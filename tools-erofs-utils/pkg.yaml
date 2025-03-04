@@ -1,0 +1,43 @@
+name: tools-erofs-utils
+variant: scratch
+dependencies:
+  - stage: base
+  - stage: tools-xz
+  - stage: tools-zlib
+  - stage: tools-zstd
+  - stage: patch
+steps:
+  - sources:
+      - url: https://web.git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git/snapshot/erofs-utils-{{ .erofs_utils_version }}.tar.gz
+        destination: erofs-utils.tar.gz
+        sha256: "{{ .erofs_utils_sha256 }}"
+        sha512: "{{ .erofs_utils_sha512 }}"
+    prepare:
+      - |
+        mkdir -p erofs-utils/src
+        tar -xf erofs-utils.tar.gz --strip-components=1 -C erofs-utils/src
+    build:
+      - |
+        cd erofs-utils/src
+        ./autogen.sh
+
+        cd ../build
+        ../src/configure \
+            --enable-multithreading \
+            --with-selinux \
+            --with-libzstd \
+            --with-libdeflate \
+            --with-xxhash \
+            --prefix=/usr
+        make -j$(nproc)
+    install:
+      - |
+        cd erofs-utils/build
+        mkdir -p /rootfs/usr/bin
+        make install-exec DESTDIR=/rootfs/
+    test:
+      - |
+        fhs-validator /rootfs
+finalize:
+  - from: /rootfs
+    to: /

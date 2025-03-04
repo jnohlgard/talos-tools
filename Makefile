@@ -47,6 +47,7 @@ COMMON_ARGS += --build-arg=SOURCE_DATE_EPOCH=$(SOURCE_DATE_EPOCH)
 TARGETS = tools
 TARGETS += tools-ca-certificates
 TARGETS += tools-cpio
+TARGETS += tools-erofs-utils
 TARGETS += tools-kmod
 TARGETS += tools-libcap
 TARGETS += tools-libselinux

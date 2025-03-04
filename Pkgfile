@@ -82,6 +82,11 @@ vars:
   elfutils_sha256: 616099beae24aba11f9b63d86ca6cc8d566d968b802391334c91df54eab416b4
   elfutils_sha512: 543188f5f2cfe5bc7955a878416c5f252edff9926754e5de0c6c57b132f21d9285c9b29e41281e93baad11d4ae7efbbf93580c114579c182103565fe99bd3909
 
+  # renovate: datasource=git-tags extractVersion=^v(?<version>.*)$ depName=git://git.kernel.org/pub/scm/linux/kernel/git/xiang/erofs-utils.git
+  erofs_version: 1.8.5
+  erofs_sha256: cd8611270e9c86fe062f647103ca6ada9ed710e4430fdd5960d514777919200d
+  erofs_sha512: c5c3a71494113ad69c5b9278ef682250b3a5eca7e6f6e92a68800f7c7ba7e69f1dbf65f877c856c619dc2276f9d3b1c82fc89853ae7938a63b390c0cb246a0da
+
   # renovate: datasource=github-releases extractVersion=^R_(?<version>.*)$ depName=libexpat/libexpat
   expat_version: 2_6_4
   expat_sha256: 8dc480b796163d4436e6f1352e71800a774f73dbae213f1860b60607d2a83ada
